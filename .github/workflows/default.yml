@@ -37,7 +37,7 @@ jobs:
     - name: Run tests
       run: |
         PACKAGE_NAMES=$(go list ./...)
-        $GOROOT/bin/gotestsum --format testname --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $PACKAGE_NAMES
+        gotestsum --format testname --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $PACKAGE_NAMES
   
   release:
     name: Release
