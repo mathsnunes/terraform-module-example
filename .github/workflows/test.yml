@@ -28,8 +28,8 @@ jobs:
 
     - name: Setup env
       run: |
-        echo "::set-env name=GOPATH::$(go env GOPATH)"
-        echo "::add-path::$(go env GOPATH)/bin"
+        echo "$(go env GOPATH) >> $GOPATH"
+        echo "$(go env GOPATH)/bin >> $GOPATH"
       shell: bash
 
     - name: Get dependencies
