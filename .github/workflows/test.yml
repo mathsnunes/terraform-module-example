@@ -1,4 +1,4 @@
-name: Test workflow
+name: Module Workflow
 
 on:
   push:
@@ -38,4 +38,20 @@ jobs:
     - name: Run tests
       run: |
         PACKAGE_NAMES=$(go list ./...)
-        gotestsum --format testname --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $PACKAGE_NAMES
+        $GOROOT/bin/gotestsum --format testname --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $PACKAGE_NAMES
+  
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v2-beta
+        with:
+        node-version: '12'
+
+      - name: Run semantic-release
+        run: |
+          npm install
+          npx semantic-release
