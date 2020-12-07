@@ -25,9 +25,8 @@ func TestTerraformBucketExample(t *testing.T) {
 	defer terraform.Destroy(t, terraformOptions)
 
 	// Run "terraform init" and "terraform apply". Fail the test if there are any errors.
-	terraform.InitAndApplyAndIdempotent(t, terraformOptions)
+	terraform.InitAndApply(t, terraformOptions)
 
-	// Run `terraform output` to get the values of output variables and check they have the expected values.
 	output := terraform.Output(t, terraformOptions, "bucket_name")
 	assert.Equal(t, bucketName, output)
 }
