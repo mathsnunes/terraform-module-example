@@ -15,12 +15,11 @@ commands: # a reusable command with parameters
         type: string
       
     steps:
-      - run:
-          name: Setup gotestsum
-          command: curl -sSL "https://github.com/gotestyourself/gotestsum/releases/download/v<<parameters.gotestsum_version>>/gotestsum_<<parameters.gotestsum_version>>_linux_amd64.tar.gz" | sudo tar -xz -C /usr/local/bin gotestsum
+      
       - run: 
-          name: Setup terraform
+          name: Setup
           command: |
+            curl -sSL "https://github.com/gotestyourself/gotestsum/releases/download/v<<parameters.gotestsum_version>>/gotestsum_<<parameters.gotestsum_version>>_linux_amd64.tar.gz" | sudo tar -xz -C /usr/local/bin gotestsum
             wget https://releases.hashicorp.com/terraform/<<parameters.terraform_version>>/terraform_<<parameters.terraform_version>>_linux_amd64.zip
             unzip terraform_<<parameters.terraform_version>>_linux_amd64.zip
             sudo mv terraform /usr/local/bin
@@ -50,7 +49,7 @@ jobs:
           name: Run tests
           command: |
             PACKAGE_NAMES=$(go list ./... | circleci tests split --split-by=timings --timings-type=classname)
-            $GOPATH/bin/gotestsum --format testname --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $PACKAGE_NAMES
+            gotestsum --format testname --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $PACKAGE_NAMES
 
       - store_artifacts: # upload test summary for display in Artifacts
           path: /tmp/test-results
