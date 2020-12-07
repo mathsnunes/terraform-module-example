@@ -28,8 +28,8 @@ jobs:
 
     - name: Setup env
       run: |
-        echo "$(go env GOPATH) >> $GOPATH"
-        echo "$(go env GOPATH)/bin >> $GOPATH"
+        echo "GOPATH=$(go env GOPATH) >> $GITHUB_ENV"
+        echo "$(go env GOPATH)/bin >> $GITHUB_PATH"
       shell: bash
 
     - name: Get dependencies
