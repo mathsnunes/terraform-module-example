@@ -1,4 +1,4 @@
-module github.com/seepen-co/terraform-module-example
+module github.com/mathsnunes/terraform-module-example
 
 go 1.15
 
