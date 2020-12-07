@@ -4,3 +4,13 @@ terraform {
   # forwards compatible with 0.13.x code.
   required_version = ">= 0.12.26"
 }
+
+resource "aws_s3_bucket" "example" {
+  bucket = var.bucket_name
+  acl    = "private"
+
+  tags = {
+    Name        = "Example bucket"
+    Environment = "Dev"
+  }
+}
