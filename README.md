@@ -7,20 +7,24 @@ de módulos para o terraform.
 
 - Estrutura inicial para a criação do um módulo do terraform
 - Exemplos de como utilizar o [terratest](https://terratest.gruntwork.io/) para testar o módulo
-- Pipeline do Circle CI para a execução de todo o ciclo de desenvolvimento e entrega de um módulo
+- Pipeline do Circle CI para a execução de todo o ciclo de desenvolvimento e release de um módulo
 
-## Entendendo o ciclo de desenvolvimento e entrega
+## Entendendo o ciclo de desenvolvimento e release
 
-`TODO`
+Nós utilizamos o [Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) para o desenvolvimento e release dos módulos. 
 
-## Contribuindo com o projeto
+Esse fluxo consiste basicamente na utilização de um único branch principal, onde todos os pull requests são mergeados.
 
-Sinta-se a vontade para sugerir e implementar melhorias nesse repositório. Ele é a principal referência para nossos times de engenharia e toda a ajuda é bem vinda.
+Ao abrir um pull request um pipeline será criado, ele irá executar todos os testes definidos no diretório `/test` do repositório. Esses testes devem passar para que seja possível a realização do merge.
 
-### Instalando as ferramentas necessárias para o desenvolvimento
+Após o merge para o branch principal um novo pipeline será criado, novos testes serão executados e se passarem darão inicio a etapa de release, onde a ferramenta [Semantic Release](https://github.com/semantic-release/semantic-release) irá analisar todos os commits e automaticamente montar o changelog e criar a tag/release do módulo.
 
-`TODO`
+## Rodando os testes localmente
 
-### Testando o módulo
+Para rodar os testes localmente é preciso que as ferramentas definidas no arquivo `.tool-versions` estejam instaladas. Para facilitar essas instalações vocês podem instalar a ferramenta [asdf](https://github.com/asdf-vm/asdf) e rodar o comando `make` na raiz do repositório.
 
-`TODO`
+## Referências
+
+- [Terratest](https://github.com/gruntwork-io/terratest)
+- [Semantic Release](https://github.com/semantic-release/semantic-release)
+- [Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
