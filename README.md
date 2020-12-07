@@ -21,7 +21,7 @@ Após o merge para o branch principal um novo pipeline será criado, novos teste
 
 ## Rodando os testes localmente
 
-Para rodar os testes localmente é preciso que as ferramentas definidas no arquivo `.tool-versions` estejam instaladas. Para facilitar essas instalações vocês podem instalar a ferramenta [asdf](https://github.com/asdf-vm/asdf) e rodar o comando `make` na raiza do repositório.
+Para rodar os testes localmente é preciso que as ferramentas definidas no arquivo `.tool-versions` estejam instaladas. Para facilitar essas instalações vocês podem instalar a ferramenta [asdf](https://github.com/asdf-vm/asdf) e rodar o comando `make` na raiz do repositório.
 
 ## Referências
 
