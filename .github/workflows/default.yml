@@ -30,19 +30,14 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: ^0.13
-
-    - name: Setup gotestsum
-      run: curl -sSL "https://github.com/gotestyourself/gotestsum/releases/download/v0.6.0/gotestsum_0.6.0_linux_amd64.tar.gz" | sudo tar -xz -C /usr/local/bin gotestsum
-      shell: bash
-
+        
     - name: Get dependencies
       run: |
         go mod download
 
     - name: Run tests
       run: |
-        PACKAGE_NAMES=$(go list ./...)
-        gotestsum --format testname --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $PACKAGE_NAMES
+        go test ./... -v
   
   release:
     name: Release
